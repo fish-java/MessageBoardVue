@@ -31,12 +31,13 @@ export default {
     postIssue(){
       if (this.title === '') return null
 
-      this.$store.dispatch('postIssue', {
+      this.title = ''
+      this.body = ''
+      
+      this.$store.commit('postIssue', {
         title: this.title,
         body: this.body
       })
-      this.title = ''
-      this.body = ''
     }
   }
 }

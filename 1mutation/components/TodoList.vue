@@ -3,7 +3,7 @@
   <a-tabs defaultActiveKey="1">
     <a-tab-pane tab="open" key="1">
       <a-collapse>
-        <a-collapse-panel v-for="item in $store.getters.open" 
+        <a-collapse-panel v-for="item in open" 
             :header="item.title" :key="item.number">
           <p>{{item.body}}</p>
           <a-button block :data-number='item.number'
@@ -15,7 +15,7 @@
 
     <a-tab-pane tab="closed" key="2">  
       <a-collapse>
-        <a-collapse-panel v-for="item in $store.getters.closed" 
+        <a-collapse-panel v-for="item in closed" 
             :header="item.title" :key="item.number">
           <p>{{item.body}}</p>
           <a-button block :data-number='item.number'
@@ -32,6 +32,14 @@ var token = conf.token
 var url = conf.url
 
 export default {
+  computed: {
+    open: function(){
+      return this.$store.state.issues.filter(item => item.state === 'open')
+    },
+    closed: function(){
+      return this.$store.state.issues.filter(item => item.state === 'closed')
+    }
+  },
   methods: {
     callback (key) {
       console.log(key)
@@ -44,7 +52,7 @@ export default {
         'state': targetState
       })
       // 嚓，原来只能传递一个参数
-      this.$store.dispatch('patchIssue', {
+      this.$store.commit('patchIssue', {
         number,
         body
       })
@@ -52,7 +60,7 @@ export default {
   },
   created(){
     console.log('TodoList.vue has created, and getting issues.')
-    this.$store.dispatch('getIssues')
+    this.$store.commit('getIssues')
   }
 }
 </script>

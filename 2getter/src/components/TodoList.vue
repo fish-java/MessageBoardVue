@@ -44,7 +44,7 @@ export default {
         'state': targetState
       })
       // 嚓，原来只能传递一个参数
-      this.$store.dispatch('patchIssue', {
+      this.$store.commit('patchIssue', {
         number,
         body
       })
@@ -52,7 +52,7 @@ export default {
   },
   created(){
     console.log('TodoList.vue has created, and getting issues.')
-    this.$store.dispatch('getIssues')
+    this.$store.commit('getIssues')
   }
 }
 </script>
