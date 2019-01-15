@@ -32,55 +32,35 @@ var token = conf.token
 var url = conf.url
 
 export default {
-  data () {
-    return {
-      open:[],
-      closed:[]
+  computed: {
+    open: function(){
+      return this.$store.state.issues.filter(item => item.state === 'open')
+    },
+    closed: function(){
+      return this.$store.state.issues.filter(item => item.state === 'closed')
     }
   },
   methods: {
     callback (key) {
       console.log(key)
     },
-    changeState: function(state, event){
+    changeState: function(targetState, event){
       // put index which get from for-loop to html element dataset
       // and use this value in js code
       var number = event.target.dataset.number
-
-
-      var _this = this
-      var xhr = new XMLHttpRequest()
-      xhr.onload = (res) => {
-        console.log('result of change state')
-        console.log(res)
-      }
-      xhr.open('PATCH', url + `/${number}`)
-      xhr.setRequestHeader('Authorization', 'bearer ' + token)
-      xhr.send(JSON.stringify({
-        state: state
-      }))
+      var body = JSON.stringify({
+        'state': targetState
+      })
+      // 嚓，原来只能传递一个参数
+      this.$store.commit('patchIssue', {
+        number,
+        body
+      })
     }
   },
-  created: function(){
-    var _this = this
-    console.log(_this)
-    var xhr = new XMLHttpRequest()
-    xhr.onload = (res) => {
-      var result = JSON.parse(res.target.responseText)
-      console.log('issues list')
-      console.log(result)
-      _this.open = result.filter( item => {
-        return item.state === 'open'
-      })
-      _this.closed = result.filter( item => {
-        return item.state === 'closed'
-      })
-      console.log('open issues list')
-      console.log(_this.open)
-    }
-    xhr.open('GET', url + '?state=all')
-    xhr.setRequestHeader('Authorization', 'bearer ' + token)
-    xhr.send()
+  created(){
+    console.log('TodoList.vue has created, and getting issues.')
+    this.$store.commit('getIssues')
   }
 }
 </script>

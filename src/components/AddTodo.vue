@@ -29,20 +29,15 @@ export default {
   },
   methods: {
     postIssue(){
-      if(this.title === '') return null
+      if (this.title === '') return null
+
+      this.title = ''
+      this.body = ''
       
-      var _this = this
-      var xhr = new XMLHttpRequest()
-      xhr.onload = (res) => {
-        console.log('recieve submit response')
-        console.log(res)
-      }
-      xhr.open('POST', url)
-      xhr.setRequestHeader('Authorization', 'bearer ' + token)
-      xhr.send(JSON.stringify({
-        title: _this.title,
-        body: _this.body
-      }))
+      this.$store.commit('postIssue', {
+        title: this.title,
+        body: this.body
+      })
     }
   }
 }
