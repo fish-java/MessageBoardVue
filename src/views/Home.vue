@@ -17,6 +17,13 @@ export default {
   components: {
     'add-todo': AddTodo,
     'todo-list': TodoList
+  },
+  watch: {
+    '$store.state.isLogin': function (newLoginState) {
+      if (newLoginState === false) {
+        this.$router.push('/login')
+      }
+    }
   }
 }
 </script>

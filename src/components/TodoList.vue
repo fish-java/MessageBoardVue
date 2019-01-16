@@ -27,10 +27,6 @@
 </div>
 </template>
 <script>
-import conf from '../conf.js'
-var token = conf.token
-var url = conf.url
-
 export default {
   methods: {
     callback (key) {

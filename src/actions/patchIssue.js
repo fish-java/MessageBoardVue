@@ -1,8 +1,9 @@
 import conf from '../conf.js'
-var token = conf.token
+
 var url = conf.url
 
 export default function (context, data) {
+  var token = localStorage.token
   var number = data.number
   var body = data.body
 

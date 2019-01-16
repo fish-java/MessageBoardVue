@@ -10,16 +10,12 @@
     <div style="margin: 12px 0" />
 
     <a-button @click="postIssue"
-      type="primary" block>提交任务</a-button>
+      type="primary" block>submit task</a-button>
     <div style="margin: 12px 0" />
   </div>
 </template>
 
 <script>
-import conf from '../conf.js'
-var token = conf.token
-var url = conf.url
-
 export default {
   data () {
     return {

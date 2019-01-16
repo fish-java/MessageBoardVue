@@ -1,11 +1,17 @@
 import conf from '../conf.js'
-var token = conf.token
+
 var url = conf.url
 
 export default function getIssues (context) {
+  var token = localStorage.token
+
   var xhr = new XMLHttpRequest()
   xhr.onload = (res) => {
-    if (res.target.status !== 200) {
+    if (res.target.status === 401) {
+      context.commit('changeLoginState', false)
+      console.error('token is outdate', res)
+    } else if (res.target.status !== 200) {
+      console.log('some error in getting issues')
       console.error(res)
     } else {
       context.commit('initIssues', JSON.parse(res.target.responseText))

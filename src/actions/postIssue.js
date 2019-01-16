@@ -1,8 +1,9 @@
 import conf from '../conf.js'
-var token = conf.token
 var url = conf.url
 
 export default function (context, issueContent) {
+  var token = localStorage.token
+
   var xhr = new XMLHttpRequest()
   xhr.onload = (res) => {
     if (res.target.status !== 201) {

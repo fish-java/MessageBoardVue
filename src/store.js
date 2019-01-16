@@ -8,12 +8,14 @@ import postIssue from './actions/postIssue.js'
 import addIssue from './mutations/addIssue.js'
 import editIssue from './mutations/editIssue.js'
 import initIssues from './mutations/initIssues.js'
+import changeLoginState from './mutations/changeLoginState.js'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    issues: []
+    issues: [],
+    isLogin: true
   },
   getters: {
     open (state, getters) {
@@ -26,7 +28,8 @@ export default new Vuex.Store({
   mutations: {
     addIssue,
     editIssue,
-    initIssues
+    initIssues,
+    changeLoginState
   },
   actions: {
     getIssues, // 通过ajax获得issues数据
