@@ -10,7 +10,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/list'
+      redirect: '/list/todo'
     }, {
       path: '/list/:type',
       component: List
