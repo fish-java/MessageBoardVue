@@ -1,8 +1,22 @@
 <template>
   <div id="app">
-    <router-view/>
+    <Tab></Tab>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
   </div>
 </template>
+
+<script>
+import Tab from '@/components/Tab.vue'
+
+export default {
+  components: {
+    Tab
+  }
+}
+</script>
+
 
 <style lang="scss">
 #app {

@@ -10,11 +10,14 @@ import editIssue from './mutations/editIssue.js'
 import initIssues from './mutations/initIssues.js'
 import changeLoginState from './mutations/changeLoginState.js'
 
+import conf from '@/conf.js'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     issues: [],
+    labels: conf.labels,
     isLogin: true
   },
   getters: {

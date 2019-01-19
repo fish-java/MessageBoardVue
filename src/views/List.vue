@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>todo list by vue</h1>
     <add-todo></add-todo>
     <hr>
     <todo-list></todo-list>

@@ -24,12 +24,13 @@ export default {
     }
   },
   methods: {
-    postIssue(){
+    postIssue () {
       if (this.title === '') return null
 
       this.$store.dispatch('postIssue', {
         title: this.title,
-        body: this.body
+        body: this.body,
+        labels: [this.$route.params.type]
       })
       this.title = ''
       this.body = ''

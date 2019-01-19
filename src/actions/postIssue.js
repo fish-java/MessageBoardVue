@@ -17,6 +17,7 @@ export default function (context, issueContent) {
   xhr.setRequestHeader('Authorization', 'bearer ' + token)
   xhr.send(JSON.stringify({
     title: issueContent.title,
-    body: issueContent.body
+    body: issueContent.body,
+    labels: issueContent.labels
   }))
 }

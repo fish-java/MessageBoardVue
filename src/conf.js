@@ -3,5 +3,6 @@ var url = 'https://api.github.com/repos/saltfish666/todo-list/issues'
 
 export default {
   token,
-  url
+  url,
+  labels: ['todo', 'note', 'aim']
 }
