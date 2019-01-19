@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <Tab></Tab>
     <keep-alive>
       <router-view/>
     </keep-alive>
@@ -8,12 +7,7 @@
 </template>
 
 <script>
-import Tab from '@/components/Tab.vue'
-
 export default {
-  components: {
-    Tab
-  }
 }
 </script>
 
